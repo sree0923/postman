@@ -23,9 +23,9 @@ jobs:
         run: |
           echo "Checking API response codes..."
           cat postman-report.json | jq ".run.executions[].response.code"
-          if cat postman-report.json | jq -e '.run.executions[].response.code | select(. | test("^[^2|3]"))' > /dev/null; then
+          if cat postman-report.json | jq -e '.run.executions[].response.code | tostring | select(. | test("^[^2|3]"))' > /dev/null; then
             echo "❌ API test failed: Found response codes outside 2xx or 3xx range."
             exit 1
           else
             echo "✅ All API tests passed successfully."
-          fi    
+          fi  
