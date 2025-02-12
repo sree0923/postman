@@ -15,3 +15,12 @@ jobs:
       - name: Run API tests
         run: |
           postman collection run "18042228-96a52346-19a3-4b5b-86a4-a285015754f4" -e "18042228-5943a5be-8a17-4140-b6bd-c8b60ae2b80a"
+
+          - name: Check for failed status codes
+          run: |
+            if jq -e '.run.executions[].response.code | select(. < 200 or . >= 400)' json_report.json > /dev/null; then
+              echo "❌ API test failed: Found response codes outside 200-300 range."
+              exit 1
+            else
+              echo "✅ All API tests passed successfully."
+            fi          
