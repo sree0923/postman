@@ -19,10 +19,9 @@ jobs:
       - name: Check for failed status codes
         run: |
           echo "Checking API response codes..."
-          # cat postman-report.json | jq ".run.executions[].response.code"
-          if jq -e '.run.executions[].response.code | select(. < 200 or . >= 400)' json_report.json > /dev/null; then
-            echo "❌ API test failed: Found response codes outside 200-300 range."
+          if jq -e '.run.executions[].response.code | select(. < 200 or . >= 400)' postman-report.json > /dev/null; then
+            echo "❌ API test failed: Found response codes outside 200-399 range."
             exit 1
           else
             echo "✅ All API tests passed successfully."
-          fi          
+          fi       
