@@ -17,7 +17,7 @@ jobs:
           postman collection run "42342525-bd1340df-c6d8-4b06-9527-b10a91ef4962" -e "42342525-f621a73e-f222-48a5-a64b-db085f039461"
       - name: Save test Results
         run: |
-          postman collection run "18042228-96a52346-19a3-4b5b-86a4-a285015754f4" -e "18042228-5943a5be-8a17-4140-b6bd-c8b60ae2b80a" --reporters=json --reporter-json-export=postman-report.json
+          postman collection run "42342525-bd1340df-c6d8-4b06-9527-b10a91ef4962" -e "42342525-f621a73e-f222-48a5-a64b-db085f039461"
       - name: Check for failed status codes
         run: |
           echo "Checking API response codes..."
