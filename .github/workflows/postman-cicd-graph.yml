@@ -14,10 +14,10 @@ jobs:
         run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY_GRAPH }}
       - name: Run API tests
         run: |
-          postman collection run 42342525-bd1340df-c6d8-4b06-9527-b10a91ef4962 -e 42342525-7c05e985-662b-408f-b192-dba7c1f991c0
+          postman collection run 42342525-bd1340df-c6d8-4b06-9527-b10a91ef4962 -e 42342525-f621a73e-f222-48a5-a64b-db085f039461
       - name: Save test Results
         run: |
-          postman collection run "42342525-bd1340df-c6d8-4b06-9527-b10a91ef4962" -e "42342525-f621a73e-f222-48a5-a64b-db085f039461"
+         postman collection run 42342525-bd1340df-c6d8-4b06-9527-b10a91ef4962 -e 42342525-f621a73e-f222-48a5-a64b-db085f039461
       - name: Check for failed status codes
         run: |
           echo "Checking API response codes..."
