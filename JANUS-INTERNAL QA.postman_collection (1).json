@@ -1,0 +1,534 @@
+{
+	"info": {
+		"_postman_id": "bd1340df-c6d8-4b06-9527-b10a91ef4962",
+		"name": "JANUS-INTERNAL QA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42342525"
+	},
+	"item": [
+		{
+			"name": "GRAPH Functions",
+			"item": [
+				{
+					"name": "01 EQi - 9039cce2-6567-4bc5-8655-8792ba9ab936",
+					"item": [
+						{
+							"name": "Eqi HorizontalBarGraph To Do",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// Get the response body as raw binary. It provides the raw binary response as a Uint8array\r",
+											"const rawBody = pm.response.stream;\r",
+											"\r",
+											"// Converts the binary data to a string. btoa encodes the string into Base64\r",
+											"const base64Image = require('btoa')(String.fromCharCode.apply(null, new Uint8Array(rawBody)));\r",
+											"\r",
+											"//The below line is setting the Baseline Image , which is run only once - when this script was created.\r",
+											"//It is a baseline base64 VALUE for this testcase and should not be re-run in the future. \r",
+											"//******* We don't want to keep updating this value.********//\r",
+											"pm.environment.set(\"EQIHorizontalBarBase64Image\", base64Image);\r",
+											"\r",
+											"console.log(\"Base64 Encoded Image:\", base64Image);\r",
+											"\r",
+											"// Save the Current Base64 string as a global  variable\r",
+											"pm.globals.set('Currentbase64Image', base64Image);\r",
+											"\r",
+											"const areImagesEqual = pm.globals.get(\"Currentbase64Image\") === pm.environment.get(\"EQIHorizontalBarBase64Image\");\r",
+											"\r",
+											"pm.test(\"Overiew Graph Validation\", () => {\r",
+											"     pm.expect(areImagesEqual).to.be.true;\r",
+											"     console.log(\"The Base64 Image comparison Results: \", areImagesEqual);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{Janus-InternalURL}}images/6005e257-4b47-486a-9464-510f1703a7ac?X=1404&Y=66&Format=jpeg&Parameters={%22Data%22:[%22-2%22]}",
+									"host": [
+										"{{Janus-InternalURL}}images"
+									],
+									"path": [
+										"6005e257-4b47-486a-9464-510f1703a7ac"
+									],
+									"query": [
+										{
+											"key": "X",
+											"value": "1404"
+										},
+										{
+											"key": "Y",
+											"value": "66"
+										},
+										{
+											"key": "Format",
+											"value": "jpeg"
+										},
+										{
+											"key": "Parameters",
+											"value": "{%22Data%22:[%22-2%22]}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "02 CSI2 - 2df4601e-b085-42da-987a-8798f4b97c35",
+					"item": [
+						{
+							"name": "CSI2 HorizontalScorePointer",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// Get the response body as raw binary. It provides the raw binary response as a Uint8array\r",
+											"const rawBody = pm.response.stream;\r",
+											"\r",
+											"// Converts the binary data to a string. btoa encodes the string into Base64\r",
+											"const base64Image = require('btoa')(String.fromCharCode.apply(null, new Uint8Array(rawBody)));\r",
+											"\r",
+											"//The below line is setting the Baseline Image , which is run only once - when this script was created.\r",
+											"//It is a baseline base64 VALUE for this testcase and should not be re-run in the future. \r",
+											"//******* We don't want to keep updating this value.********//\r",
+											"pm.environment.set(\"CSI2HorizontalPointerBase64Image\", base64Image);\r",
+											"\r",
+											"console.log(\"Base64 Encoded Image:\", base64Image);\r",
+											"\r",
+											"// Save the Current Base64 string as a global  variable\r",
+											"pm.globals.set('Currentbase64Image', base64Image);\r",
+											"\r",
+											"const areImagesEqual = pm.globals.get(\"Currentbase64Image\") === pm.environment.get(\"CSI2HorizontalPointerBase64Image\");\r",
+											"\r",
+											"pm.test(\"Overiew Graph Validation\", () => {\r",
+											"     pm.expect(areImagesEqual).to.be.true;\r",
+											"     console.log(\"The Base64 Image comparison Results: \", areImagesEqual);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{Janus-InternalURL}}images/6005e257-4b47-486a-9464-510f1703a7ac?X=1404&Y=66&Format=jpeg&Parameters={%22Data%22:[%22-2%22]}",
+									"host": [
+										"{{Janus-InternalURL}}images"
+									],
+									"path": [
+										"6005e257-4b47-486a-9464-510f1703a7ac"
+									],
+									"query": [
+										{
+											"key": "X",
+											"value": "1404"
+										},
+										{
+											"key": "Y",
+											"value": "66"
+										},
+										{
+											"key": "Format",
+											"value": "jpeg"
+										},
+										{
+											"key": "Parameters",
+											"value": "{%22Data%22:[%22-2%22]}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "03 KCPT2 - 05696a81-c954-427a-b3c1-6b3a97fa08b3",
+					"item": [
+						{
+							"name": "KCPT2 OverviewGraph",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// Get the response body as raw binary. It provides the raw binary response as a Uint8array\r",
+											"const rawBody = pm.response.stream;\r",
+											"\r",
+											"// Converts the binary data to a string. btoa encodes the string into Base64\r",
+											"const base64Image = require('btoa')(String.fromCharCode.apply(null, new Uint8Array(rawBody)));\r",
+											"\r",
+											"//The below line is setting the Baseline Image , which is run only once - when this script was created.\r",
+											"//It is a baseline base64 VALUE for this testcase and should not be re-run in the future. \r",
+											"//******* We don't want to keep updating this value.********//\r",
+											"pm.environment.set(\"KCPT2OverviewBase64Image\", base64Image);\r",
+											"\r",
+											"console.log(\"Base64 Encoded Image:\", base64Image);\r",
+											"\r",
+											"// Save the Current Base64 string as a global  variable\r",
+											"pm.globals.set('Currentbase64Image', base64Image);\r",
+											"\r",
+											"const areImagesEqual = pm.globals.get(\"Currentbase64Image\") === pm.environment.get(\"KCPT2OverviewBase64Image\");\r",
+											"\r",
+											"pm.test(\"Overiew Graph Validation\", () => {\r",
+											"     pm.expect(areImagesEqual).to.be.true;\r",
+											"     console.log(\"The Base64 Image comparison Results: \", areImagesEqual);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{Janus-InternalURL}}images/6b999ac7-a971-4ad2-a0be-62901f56a2b6?X=578&Y=250&Format=jpeg&Parameters={%22Data%22:[%2242%22,%2256%22,%2248%22,%2252%22,%2253%22,%2250%22,%2256%22,%2242%22,%2250%22],%22Graph-Name%22:%22Overview_of_Conners_KCPT2_Scores%22}",
+									"host": [
+										"{{Janus-InternalURL}}images"
+									],
+									"path": [
+										"6b999ac7-a971-4ad2-a0be-62901f56a2b6"
+									],
+									"query": [
+										{
+											"key": "X",
+											"value": "578"
+										},
+										{
+											"key": "Y",
+											"value": "250"
+										},
+										{
+											"key": "Format",
+											"value": "jpeg"
+										},
+										{
+											"key": "Parameters",
+											"value": "{%22Data%22:[%2242%22,%2256%22,%2248%22,%2252%22,%2253%22,%2250%22,%2256%22,%2242%22,%2250%22],%22Graph-Name%22:%22Overview_of_Conners_KCPT2_Scores%22}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KCPT2 LineGraph TO DO",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// Get the response body as raw binary. It provides the raw binary response as a Uint8array\r",
+											"const rawBody = pm.response.stream;\r",
+											"\r",
+											"// Converts the binary data to a string. btoa encodes the string into Base64\r",
+											"const base64Image = require('btoa')(String.fromCharCode.apply(null, new Uint8Array(rawBody)));\r",
+											"\r",
+											"//The below line is setting the Baseline Image , which is run only once - when this script was created.\r",
+											"//It is a baseline base64 VALUE for this testcase and should not be re-run in the future. \r",
+											"//******* We don't want to keep updating this value.********//\r",
+											"//pm.environment.set(\"KCPT2OverviewBase64Image\", base64Image);\r",
+											"\r",
+											"console.log(\"Base64 Encoded Image:\", base64Image);\r",
+											"\r",
+											"// Save the Current Base64 string as a global  variable\r",
+											"pm.globals.set('Currentbase64Image', base64Image);\r",
+											"\r",
+											"const areImagesEqual = pm.globals.get(\"Currentbase64Image\") === pm.environment.get(\"KCPT2OverviewBase64Image\");\r",
+											"\r",
+											"pm.test(\"Overiew Graph Validation\", () => {\r",
+											"     pm.expect(areImagesEqual).to.be.true;\r",
+											"     console.log(\"The Base64 Image comparison Results: \", areImagesEqual);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{Janus-InternalURL}}images/6b999ac7-a971-4ad2-a0be-62901f56a2b6?X=578&Y=250&Format=jpeg&Parameters={%22Data%22:[%2242%22,%2256%22,%2248%22,%2252%22,%2253%22,%2250%22,%2256%22,%2242%22,%2250%22],%22Graph-Name%22:%22Overview_of_Conners_KCPT2_Scores%22}",
+									"host": [
+										"{{Janus-InternalURL}}images"
+									],
+									"path": [
+										"6b999ac7-a971-4ad2-a0be-62901f56a2b6"
+									],
+									"query": [
+										{
+											"key": "X",
+											"value": "578"
+										},
+										{
+											"key": "Y",
+											"value": "250"
+										},
+										{
+											"key": "Format",
+											"value": "jpeg"
+										},
+										{
+											"key": "Parameters",
+											"value": "{%22Data%22:[%2242%22,%2256%22,%2248%22,%2252%22,%2253%22,%2250%22,%2256%22,%2242%22,%2250%22],%22Graph-Name%22:%22Overview_of_Conners_KCPT2_Scores%22}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KCPT2 VerticalBarGraph TO DO",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// Get the response body as raw binary. It provides the raw binary response as a Uint8array\r",
+											"const rawBody = pm.response.stream;\r",
+											"\r",
+											"// Converts the binary data to a string. btoa encodes the string into Base64\r",
+											"const base64Image = require('btoa')(String.fromCharCode.apply(null, new Uint8Array(rawBody)));\r",
+											"\r",
+											"//The below line is setting the Baseline Image , which is run only once - when this script was created.\r",
+											"//It is a baseline base64 VALUE for this testcase and should not be re-run in the future. \r",
+											"//******* We don't want to keep updating this value.********//\r",
+											"//pm.environment.set(\"KCPT2OverviewBase64Image\", base64Image);\r",
+											"\r",
+											"console.log(\"Base64 Encoded Image:\", base64Image);\r",
+											"\r",
+											"// Save the Current Base64 string as a global  variable\r",
+											"pm.globals.set('Currentbase64Image', base64Image);\r",
+											"\r",
+											"const areImagesEqual = pm.globals.get(\"Currentbase64Image\") === pm.environment.get(\"KCPT2OverviewBase64Image\");\r",
+											"\r",
+											"pm.test(\"Overiew Graph Validation\", () => {\r",
+											"     pm.expect(areImagesEqual).to.be.true;\r",
+											"     console.log(\"The Base64 Image comparison Results: \", areImagesEqual);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{Janus-InternalURL}}images/6b999ac7-a971-4ad2-a0be-62901f56a2b6?X=578&Y=250&Format=jpeg&Parameters={%22Data%22:[%2242%22,%2256%22,%2248%22,%2252%22,%2253%22,%2250%22,%2256%22,%2242%22,%2250%22],%22Graph-Name%22:%22Overview_of_Conners_KCPT2_Scores%22}",
+									"host": [
+										"{{Janus-InternalURL}}images"
+									],
+									"path": [
+										"6b999ac7-a971-4ad2-a0be-62901f56a2b6"
+									],
+									"query": [
+										{
+											"key": "X",
+											"value": "578"
+										},
+										{
+											"key": "Y",
+											"value": "250"
+										},
+										{
+											"key": "Format",
+											"value": "jpeg"
+										},
+										{
+											"key": "Parameters",
+											"value": "{%22Data%22:[%2242%22,%2256%22,%2248%22,%2252%22,%2253%22,%2250%22,%2256%22,%2242%22,%2250%22],%22Graph-Name%22:%22Overview_of_Conners_KCPT2_Scores%22}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KCPT2 WhiskerLineGraph TO DO",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"// Get the response body as raw binary. It provides the raw binary response as a Uint8array\r",
+											"const rawBody = pm.response.stream;\r",
+											"\r",
+											"// Converts the binary data to a string. btoa encodes the string into Base64\r",
+											"const base64Image = require('btoa')(String.fromCharCode.apply(null, new Uint8Array(rawBody)));\r",
+											"\r",
+											"//The below line is setting the Baseline Image , which is run only once - when this script was created.\r",
+											"//It is a baseline base64 VALUE for this testcase and should not be re-run in the future. \r",
+											"//******* We don't want to keep updating this value.********//\r",
+											"//pm.environment.set(\"KCPT2OverviewBase64Image\", base64Image);\r",
+											"\r",
+											"console.log(\"Base64 Encoded Image:\", base64Image);\r",
+											"\r",
+											"// Save the Current Base64 string as a global  variable\r",
+											"pm.globals.set('Currentbase64Image', base64Image);\r",
+											"\r",
+											"const areImagesEqual = pm.globals.get(\"Currentbase64Image\") === pm.environment.get(\"KCPT2OverviewBase64Image\");\r",
+											"\r",
+											"pm.test(\"Overiew Graph Validation\", () => {\r",
+											"     pm.expect(areImagesEqual).to.be.true;\r",
+											"     console.log(\"The Base64 Image comparison Results: \", areImagesEqual);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{Janus-InternalURL}}images/6b999ac7-a971-4ad2-a0be-62901f56a2b6?X=578&Y=250&Format=jpeg&Parameters={%22Data%22:[%2242%22,%2256%22,%2248%22,%2252%22,%2253%22,%2250%22,%2256%22,%2242%22,%2250%22],%22Graph-Name%22:%22Overview_of_Conners_KCPT2_Scores%22}",
+									"host": [
+										"{{Janus-InternalURL}}images"
+									],
+									"path": [
+										"6b999ac7-a971-4ad2-a0be-62901f56a2b6"
+									],
+									"query": [
+										{
+											"key": "X",
+											"value": "578"
+										},
+										{
+											"key": "Y",
+											"value": "250"
+										},
+										{
+											"key": "Format",
+											"value": "jpeg"
+										},
+										{
+											"key": "Parameters",
+											"value": "{%22Data%22:[%2242%22,%2256%22,%2248%22,%2252%22,%2253%22,%2250%22,%2256%22,%2242%22,%2250%22],%22Graph-Name%22:%22Overview_of_Conners_KCPT2_Scores%22}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
