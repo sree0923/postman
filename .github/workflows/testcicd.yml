@@ -1,4 +1,4 @@
-name: Automated API tests
+name: testingcicd
 
 on: workflow_dispatch
 
