@@ -1,0 +1,55 @@
+name: Deploy Api Connections
+on:
+ workflow_dispatch:
+   inputs:
+    environment:
+      description: "environment"
+      required: true
+      type: choice
+      options:
+        - develop
+        - qa
+        - prod
+env:
+  AZURE_CORE_ONLY_SHOW_ERRORS: false
+  DEBUG: true
+
+jobs:
+  api-connections-deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout code
+      uses: actions/checkout@main
+
+    - name: Log into Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets[github.event.inputs.environment] }}
+
+    - name: Validate Bicep Template
+      if: github.ref == 'refs/heads/${{ github.event.inputs.environment }}'
+      run: |
+        az bicep build --file ./bicep/${{ github.event.inputs.environment }}.bicep
+
+    - name: Set Resource Group
+      run: |
+        if [ "${{ github.event.inputs.environment }}" == "develop" ]; then
+          echo "RESOURCE_GROUP=mhs-dev-eus-janus-2022-10-rg" >> $GITHUB_ENV
+        elif [ "${{ github.event.inputs.environment }}" == "qa" ]; then
+          echo "RESOURCE_GROUP=connection-rg" >> $GITHUB_ENV
+        elif [ "${{ github.event.inputs.environment }}" == "prod" ]; then
+          echo "RESOURCE_GROUP=" >> $GITHUB_ENV
+        else
+          echo "Invalid environment: ${{ github.event.inputs.environment }}"
+          exit 1
+        fi
+
+    - name: Deploy Api Connections
+      if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/qa' || github.ref == 'refs/heads/main'
+      run: |
+        az deployment group create \
+            --resource-group "$RESOURCE_GROUP" \
+            --template-file "./bicep/${{ github.event.inputs.environment }}.bicep" \
+            --parameters createdTime="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" changedTime="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+           
