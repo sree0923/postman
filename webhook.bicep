@@ -10,7 +10,7 @@ resource topics_MHSJanusNotification_DEV_Public_name_Client_3091f1fa_9f0b_4974_a
   properties: {
     destination: {
       properties: {
-        endpointUrl: 'https://prod-23.eastus.logic.azure.com/workflows/a50fae3b15fb4f3d90078fb4925704e3/triggers/manual/paths/invoke'
+        endpointUrl: 'https://test-webhookas.azurewebsites.net/workflows/test'
         maxEventsPerBatch: 1
         preferredBatchSizeInKilobytes: 64
         minimumTlsVersionAllowed: '1.2'
