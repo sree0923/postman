@@ -10,6 +10,7 @@ resource topics_MHSJanusNotification_DEV_Public_name_Client_3091f1fa_9f0b_4974_a
   properties: {
     destination: {
       properties: {
+        endpointUrl: 'https://test-webhookas.azurewebsites.net/test'
         maxEventsPerBatch: 1
         preferredBatchSizeInKilobytes: 64
         minimumTlsVersionAllowed: '1.2'
