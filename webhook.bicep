@@ -1,4 +1,4 @@
-param topics_MHSJanusNotification_DEV_Public_name string = 'MHSJanusNotification-DEV-Public'
+param topics_MHSJanusNotification_DEV_Public_name string = 'MHSJanusNotification-DEV-Public-as'
 
 resource topics_MHSJanusNotification_DEV_Public_name_resource 'Microsoft.EventGrid/topics@2024-06-01-preview'  existing = {
   name: topics_MHSJanusNotification_DEV_Public_name
