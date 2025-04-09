@@ -1,0 +1,32 @@
+name: Assign Code Reviewers
+
+on:
+  pull_request:
+    types:
+      - opened
+    branches:
+      - main
+      - qa
+      - develop
+
+permissions:  
+  pull-requests: write 
+  contents: read  
+
+jobs:
+  assign-reviewers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository (Required for gh CLI)
+        uses: actions/checkout@v4       
+
+      - name: Assign Reviewers
+        run: |
+          if [[ "${{ github.base_ref }}" == "main" ]]; then
+            gh pr edit ${{ github.event.pull_request.number }} --add-reviewer sree0923
+            else
+            gh pr edit ${{ github.event.pull_request.number }} --add-reviewersree0923
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+
