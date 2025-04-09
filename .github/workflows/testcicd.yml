@@ -15,3 +15,4 @@ jobs:
       - name: Run API tests
         run: |
           postman collection run JANUS-INTERNAL-QA.postman_collection.json --environment Janus-DEV.postman_environment.json
+          ##############################################
